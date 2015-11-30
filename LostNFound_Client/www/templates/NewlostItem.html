@@ -1,0 +1,66 @@
+
+<ion-view view-title="Add Lost Item" name="signup-view">
+  <ion-content class="padding">
+ <div class="row">
+  <div class="col col-center">Item Lost</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="text" placeholder="Type of Item" ng-model="data.itemName">
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-center">Description</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="text" placeholder="Description" ng-model="data.itemDescr">
+    </label>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col col-center">Date</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="date" data-date-format="DD MMMM YYYY" placeholder="When did you lose the item" ng-model="data.itemDate">
+    </label>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col col-center">Date</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="time" placeholder="When did you lose the item" ng-model="data.itemTime">
+    </label>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col col-center">Location</div>
+  <div class="col col-67">
+    <select  class="form-control">
+          <option selected>Select</option>
+          <option>MLK Library</option>
+          <option>Engineering Building</option>
+          <option>Tower Hall</option>
+          <option>Student Union</option>
+          <option>Not Sure</option>
+        </select>
+  </div>
+</div>  
+
+
+
+ <a class="button button-calm button-block icon icon-center ion-unlocked" ng-click="submit()"></i> Submit</a>
+ 
+<!--  <div id="map" data-tap-disabled="true"></div>
+ -->
+  </ion-content>
+</ion-view>

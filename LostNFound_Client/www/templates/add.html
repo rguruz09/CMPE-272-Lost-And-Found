@@ -1,0 +1,30 @@
+<ion-view view-title="Lost 'N' Found">
+<ion-nav-bar class="bar bar-positive" >
+<ion-nav-back-button></ion-nav-back-button>
+</ion-nav-bar>
+ <ion-header-bar no-tap-scroll="true" class="bar bar-subheader align-center bar-calm ">
+ <h4 align="center" style="color:white">Profile</h4></ion-header-bar>
+<ion-content class="has-header" >
+ <div class="list" >
+ 	<div class="item item-body">
+<img src="{{item.userpic}} "><br><br><br>
+</div>
+<div class="item  item-body">
+User : {{results[0].firstname}}<br><br>
+Date :	{{results[0].time}}<br><br>
+Item :	{{results[0].itemname}}<br><br>
+Description : {{results[0].itemdesc}}<br><br>
+</div>
+<div class="item  item-body ">
+	
+	CONTACT DETAILS 
+	
+	<br>
+	Email : {{results[0].emailid}}<br><br>
+	Phone : {{results[0].mobile}}<br><br>
+	</div>
+</div>
+
+</ion-content-class>
+
+</ion-view>
