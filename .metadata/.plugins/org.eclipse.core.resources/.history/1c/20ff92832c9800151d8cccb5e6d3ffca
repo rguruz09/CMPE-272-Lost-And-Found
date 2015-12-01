@@ -178,9 +178,8 @@ exports.addNewFoundItem = function(req, res){
 		        	});
 		        }
 		        else {
-		        	res.json({
-		        		code : 404
-		        	});
+		        	res.send({"login":"Fail"});
+		            console.log(err);
 		        }  
 		},getUser); 
 };

@@ -173,14 +173,11 @@ exports.addNewFoundItem = function(req, res){
 	mysql.fetchData(function(err,results){
 		if (results.insertId > 0){
 		console.log("Successfully Signed up");
-		        	res.json({
-		        		code : 200
-		        	});
+		        	res.send({"login":"Success"});
 		        }
 		        else {
-		        	res.json({
-		        		code : 404
-		        	});
+		        	res.send({"login":"Fail"});
+		            console.log(err);
 		        }  
 		},getUser); 
 };

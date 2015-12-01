@@ -163,29 +163,6 @@ exports.newlostitem = function(req, res){
 };
 
 
-
-//addNewFoundItem - Add new found item
-exports.addNewFoundItem = function(req, res){
-	console.log("inside addNewFoundItem");
-	var flag = -1;
-	var getUser="insert into found(emailid,itemname,itemdesc,flag,date,time) values ('" + req.param("userID")  + "', '" + req.param("itemname") + "','" + req.param("itemdesc") + "',"+ flag +",'" + req.param("lostdate") + "','" +  req.param("losttime") + "')"; 
-	console.log("Query is:"+getUser);
-	mysql.fetchData(function(err,results){
-		if (results.insertId > 0){
-		console.log("Successfully Signed up");
-		        	res.json({
-		        		code : 200
-		        	});
-		        }
-		        else {
-		        	res.json({
-		        		code : 404
-		        	});
-		        }  
-		},getUser); 
-};
-
-
 //////////////////////////////////////////////////ON DELETE////////////////////////////////////////////	
 exports.ondelete = function(req, res){
 	var id = req.param("uid");

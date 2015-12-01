@@ -5,34 +5,6 @@ angular.module('starter.controllers', [])
 
 .controller('NewlostItemCtrl', function($scope,$state,$http,$ionicLoading, UserSession) {
 
-  console.log("listening..");
-  
-  google.maps.event.addDomListener(window, 'load', function() {
-     console.log("listening again..");
-     // var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
- 
-     //    var mapOptions = {
-     //        center: myLatlng,
-     //        zoom: 16,
-     //        mapTypeId: google.maps.MapTypeId.ROADMAP
-     //    };
- 
-     //    var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
- 
-     //    navigator.geolocation.getCurrentPosition(function(pos) {
-     //        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-     //        var myLocation = new google.maps.Marker({
-     //            position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-     //            map: map,
-     //            title: "My Location"
-     //        });
-     //    });
- 
-     //    $scope.map = map;     
-  });
-  
-
-
   $scope.data = {};
   $scope.submit = function() {
 
@@ -47,6 +19,36 @@ angular.module('starter.controllers', [])
     }    
 })
 
+
+.controller('addNewFoundItem', function($scope,$state,$http,$ionicLoading, UserSession) {
+
+  $scope.data = {};
+  $scope.addIten = function() {
+
+
+  
+  $http({
+            method : 'post',
+            url : 'http://localhost:3000/addNewFoundItem',
+            data : {
+                "userID": UserSession.GetUser() , 
+                "itemname": $scope.itemName , 
+                "itemdesc": $scope.itemDescr , 
+                "lostdate":'2015-09-12',
+                "losttime": '09:10'       
+              }
+          }).success(function(data) {
+            if(data.code == 404){
+              console.log("SQL failed");
+              $state.go('found');
+            }else
+            if(data.code == 200){               
+              console.log("Added to found item list");
+              $state.go('found');
+            }                 
+          }); 
+    }    
+})
 
 .controller('SignUpCtrl', function($scope, $state, $http, UserSession) {
 
@@ -144,8 +146,12 @@ angular.module('starter.controllers', [])
     $scope.hideBackButton=true;
     $http.post("http://localhost:3000/lost")
          .success(function(response){
-                   $scope.items= JSON.parse(response.items)
-                   console.log(JSON.stringify($scope.items));
+                   if(response.code == 200){
+                      $scope.items = response.items;  
+                   }else
+                   {
+                      console.log("No items");
+                   }
               }).error(function(error){
                   alert("LOGIN FAILED");
               });  
@@ -206,6 +212,9 @@ $scope.lost=function(){
   $scope.found=function(){
     $state.go('Found');
   }
+  $scope.addItem = function() {
+    $state.go('NewlostItem');
+  } 
   $scope.add=function(item){
     console.log("bye",item);
    var item1=item;
@@ -215,42 +224,21 @@ $scope.lost=function(){
     $state.go('add',{item1});
   }
 
-$http({
-                  method: 'POST',
-                  url:'http://localhost:8100/ionic-lab',
-                  }).success(function(response){
-                    
-                    $scope.items=[
-{
-  "itemname" : "Watch",
-"firstname" : "Neha",
-"lastname" : "Sah",
-"userpic" : "blank.png",
-"time" : "60 minutes",
-"address" : " 211 S 9th St, San Jose, CA 95112",
-"itemdesc" : "Black Tommy Hilfiger watch"
-},
-{
-    "itemname" : "Goggles",
-"firstname" : "Shru",
-"lastname" : "K",
-"userpic" : "blank.png",
-"time" : "10 minutes",
-"address" : "150 E San Fernando St, San Jose, CA 95112",
-"itemdesc" : "Blue Ray Ban Googles"
-},
-{
-  "itemname" : "Charger",
-"firstname" : "Raghu",
-"lastname" : "G",
-"userpic" : "blank.png",
-"time" : "3 hours",
-"address" : "Dudley Moorhead Hall, San Jose, CA 95112",
-"itemdesc" : "Dell Charger"
-}
-];
+
+  $http({
+            method : 'post',
+            url : 'http://localhost:3000/getFoundItems'
+          }).success(function(data) {
+            if(data.code == 404){
+              console.log("SQL failed");
+            }else
+            if(data.code == 200){               
+              console.log("got found item list");
+              $scope.items = data.items;
+            }                 
+          });
+
 })
-                })
 
 
 

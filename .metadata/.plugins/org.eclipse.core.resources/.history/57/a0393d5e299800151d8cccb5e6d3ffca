@@ -44,7 +44,7 @@ app.all('*', function(req, res, next) {
 });
 
 app.get('/', routes.index);
-app.post('/lost', user.lost);
+app.post('/getFoundItems', user.lost);
 app.get('/login', user.login);
 app.get('/users', user.list);
 app.get('/ondelete', user.ondelete);
@@ -53,8 +53,6 @@ app.get('/homepage', user.homepage);
 app.get('/NewlostItem',user.newlostitem);
 app.get('/getLocation', user.getLocation);
 app.get('/signup',user.signup);
-app.post('/getFoundItems', user.getFoundItems);
-app.post('/addNewFoundItem', user.addNewFoundItem);
 
 
 http.createServer(app).listen(app.get('port'), function(){

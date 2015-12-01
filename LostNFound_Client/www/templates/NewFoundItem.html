@@ -1,0 +1,63 @@
+<ion-view view-title="Add Found Item" name="signup-view">
+<ion-nav-bar class=" bar bar-positive">
+<ion-nav-back-button></ion-nav-back-button>
+ </ion-nav-bar>
+<ion-content class="padding">
+<div class="row">
+  <div class="col col-center">Item Lost</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="text" placeholder="Type of Item" ng-model="data.itemName">
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-center">Description</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="text" placeholder="Description" ng-model="data.itemDescr">
+    </label>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col col-center">Date</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="date" placeholder="When did you lose the item" ng-model="data.itemDate">
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-center">Time</div>
+  <div class="col col-67">
+    <label class="item item-input">
+      <input type="time" placeholder="What time did you lose the item" ng-model="data.itemTime">
+    </label>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col col-center">Location</div>
+  <div class="col col-67">
+    <select>
+          <option selected>Select</option>
+          <option>MLK Library</option>
+          <option>Engineering Building</option>
+          <option>Tower Hall</option>
+          <option>Student Union</option>
+          <option>Not Sure</option>
+
+
+        </select>
+  </div>
+</div>  
+
+ <a class="button button-calm button-block icon icon-center ion-unlocked" ng-click="submit()"></i> Submit</a>
+  </ion-content>
+</ion-view>

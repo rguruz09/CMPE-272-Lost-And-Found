@@ -53,9 +53,6 @@ app.get('/homepage', user.homepage);
 app.get('/NewlostItem',user.newlostitem);
 app.get('/getLocation', user.getLocation);
 app.get('/signup',user.signup);
-app.post('/getFoundItems', user.getFoundItems);
-app.post('/addNewFoundItem', user.addNewFoundItem);
-
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
