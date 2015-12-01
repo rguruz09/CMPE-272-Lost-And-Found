@@ -85,8 +85,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
 
        .state('found', {
       url: '/found',
-      templateUrl: 'templates/found.html'
-    //  controller: 'LoginCtrl'
+      templateUrl: 'templates/found.html',
+      controller: 'foundCtrl'
   })
 
        .state('NewlostItem', {
