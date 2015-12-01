@@ -77,7 +77,7 @@ exports.list = function(req, res){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.lost = function(req, res){
 	
-	var query1 = "select * from lost join users on lost.emailid = users.emailid order by date desc "; 
+	var query1 = "select * from lost join users on lost.uid = users.uid order by date desc "; 
 	mysql.fetchData(function(err,results){
 		if(err){
 			throw err;
@@ -122,11 +122,9 @@ exports.homepage = function(req, res){
 };
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////
-//{ "userID": UserSession.GetUser() , "itemname": $scope.data.itemName , "itemdesc": $scope.data.itemDescr , "lostdate": data.itemDate,"losttime": data.itemTime } 
 exports.newlostitem = function(req, res){
 	console.log("inside newlostitem");
-	var flag = -1;
-	var getUser="insert into lost(emailid,itemname,itemdesc,flag,date,time) values ('" + req.param("userID")  + "', '" + req.param("itemname") + "','" + req.param("itemdesc") + "',"+ flag +",'" + req.param("lostdate") + "','" +  req.param("losttime") + "')"; 
+	var getUser="insert into lost(uid,itemname,itemdesc,date,time) values ('" + req.param("userID")  + "', '" + req.param("itemname") + "','" + req.param("itemdesc") + "','" + req.param("lostdate") + "','" +  req.param("losttime") + "')"; 
 	console.log("Query is:"+getUser);
 	mysql.fetchData(function(err,results){
 		if (results.insertId > 0){
