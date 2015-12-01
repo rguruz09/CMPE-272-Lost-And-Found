@@ -110,7 +110,7 @@ angular.module('starter.controllers', [])
                     if(response.code == 200 ){
                       UserSession.AddUser(response.user_ID);
                       alert(UserSession.GetUser());
-                      $state.go('');
+                      $state.go('lost1');
                     }
                     else{
                       $state.go('signup');                      
@@ -139,13 +139,13 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('LostCtrl', function($scope, $http, $state , UserSession) {
-
-  alert("insidecontroller");
+.controller('LostCtrl', function($scope, $http, $state ,  $ionicModal, UserSession) {
  
+    $scope.hideBackButton=true;
     $http.post("http://localhost:3000/lost")
          .success(function(response){
                    $scope.items= JSON.parse(response.items)
+                   console.log(JSON.stringify($scope.items));
               }).error(function(error){
                   alert("LOGIN FAILED");
               });  
@@ -154,6 +154,9 @@ angular.module('starter.controllers', [])
      $scope.addItem = function() {
           $state.go('NewlostItem');
       } 
+      $scope.lost=function(){
+        $state.go('lost1');
+      }
 
       $scope.found = function() {
         alert("found page");
@@ -172,7 +175,7 @@ angular.module('starter.controllers', [])
                        if(response.login == "Success")
                           $state.go('lost1');
                   }).error(function(error){
-                      alert("ERROR ADDING NEW ITEM");
+                      alert("ERROR DELETING NEW ITEM");
                   }); 
         }    
 
@@ -192,6 +195,123 @@ angular.module('starter.controllers', [])
                       alert("ERROR SHOW DETAILS");
                   });
 })
+
+.controller('foundCtrl', function($scope,$http,$state) {
+  $scope.hideBackButton=true;
+//$scope.item1u="";
+//$scope.item1i="";
+$scope.lost=function(){
+    $state.go('lost1');
+  }
+  $scope.found=function(){
+    $state.go('Found');
+  }
+  $scope.add=function(item){
+    console.log("bye",item);
+   var item1=item;
+     console.log("hii",item1);
+  //item1u=item.firstname;
+//item1i=item.itemname;
+    $state.go('add',{item1});
+  }
+
+$http({
+                  method: 'POST',
+                  url:'http://localhost:8100/ionic-lab',
+                  }).success(function(response){
+                    
+                    $scope.items=[
+{
+  "itemname" : "Watch",
+"firstname" : "Neha",
+"lastname" : "Sah",
+"userpic" : "blank.png",
+"time" : "60 minutes",
+"address" : " 211 S 9th St, San Jose, CA 95112",
+"itemdesc" : "Black Tommy Hilfiger watch"
+},
+{
+    "itemname" : "Goggles",
+"firstname" : "Shru",
+"lastname" : "K",
+"userpic" : "blank.png",
+"time" : "10 minutes",
+"address" : "150 E San Fernando St, San Jose, CA 95112",
+"itemdesc" : "Blue Ray Ban Googles"
+},
+{
+  "itemname" : "Charger",
+"firstname" : "Raghu",
+"lastname" : "G",
+"userpic" : "blank.png",
+"time" : "3 hours",
+"address" : "Dudley Moorhead Hall, San Jose, CA 95112",
+"itemdesc" : "Dell Charger"
+}
+];
+})
+                })
+
+
+
+.controller('Lost1Ctrl', function($scope,$http,$state) {
+  $scope.hideBackButton=true;
+//$scope.item1u="";
+//$scope.item1i="";
+$scope.lost=function(){
+    $state.go('lost1');
+  }
+  $scope.found=function(){
+    $state.go('Found');
+  }
+
+  $scope.add=function(item){
+    console.log("bye",item);
+   var item1=item;
+     console.log("hii",item1);
+  //item1u=item.firstname;
+//item1i=item.itemname;
+    $state.go('add',{item1});
+  }
+
+$http({
+                  method: 'POST',
+                  url:'http://localhost:8100/ionic-lab',
+                  }).success(function(response){
+                    
+                    $scope.items=[
+{
+  "itemname" : "Watch",
+"firstname" : "Neha",
+"lastname" : "Sah",
+"userpic" : "blank.png",
+"time" : "60 minutes",
+"address" : " 211 S 9th St, San Jose, CA 95112",
+"itemdesc" : "Black Tommy Hilfiger watch"
+},
+{
+  "itemname" : "Goggles",
+"firstname" : "Shru",
+"lastname" : "K",
+"userpic" : "blank.png",
+"time" : "10 minutes",
+"address" : "150 E San Fernando St, San Jose, CA 95112",
+"itemdesc" : "Blue Ray Ban Googles"
+},
+{
+  "itemname" : "Charger",
+"firstname" : "Raghu",
+"lastname" : "G",
+"userpic" : "blank.png",
+"time" : "3 hours",
+"address" : "Dudley Moorhead Hall, San Jose, CA 95112",
+"itemdesc" : "Dell Charger"
+}
+];
+})
+                })
+
+
 
 
 .controller('ChatsCtrl', function($scope, Chats) {
