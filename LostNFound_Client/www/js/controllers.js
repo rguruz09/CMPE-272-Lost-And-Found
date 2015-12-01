@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('NewlostItemCtrl', function($scope,$state,$http,$ionicLoading) {
+.controller('NewlostItemCtrl', function($scope,$state,$http,$ionicLoading, UserSession) {
 
 /*
 google.maps.event.addDomListener(window, 'load', function() {
@@ -29,11 +29,11 @@ google.maps.event.addDomListener(window, 'load', function() {
     });
 
 */
-$scope.data = {};
- $scope.submit = function() {
+  $scope.data = {};
+  $scope.submit = function() {
 
- //$http.get("http://localhost:3000/NewlostItem", { params: { "itemname": $scope.data.itemName , "itemdesc": $scope.data.itemDescr , "lostdate":$scope.data.itemDate ,"losttime":$scope.data.itemTime  } })
- $http.get("http://localhost:3000/NewlostItem", { params: { "itemname": $scope.data.itemName , "itemdesc": $scope.data.itemDescr , "lostdate":'2015-09-12' ,"losttime": '09:10' } })
+  //$http.get("http://localhost:3000/NewlostItem", { params: { "itemname": $scope.data.itemName , "itemdesc": $scope.data.itemDescr , "lostdate":$scope.data.itemDate ,"losttime":$scope.data.itemTime  } })
+  $http.get("http://localhost:3000/NewlostItem", { params: { "userID": UserSession.GetUser() , "itemname": $scope.data.itemName , "itemdesc": $scope.data.itemDescr , "lostdate":'2015-09-12' ,"losttime": '09:10' } })
          .success(function(response){
                    if(response.login == "Success")
                       $state.go('lost1');
@@ -44,19 +44,25 @@ $scope.data = {};
 })
 
 
-.controller('SignUpCtrl', function($scope, $state, $http) {
+.controller('SignUpCtrl', function($scope, $state, $http, UserSession) {
 
         $scope.data = {};
 
        $scope.signup = function() {
 
-          console.log("Name is: " + $scope.data.name);
+          console.log("Name is: " + $scope.data.fname + " "+$scope.data.lname);
           console.log("password is: " + $scope.data.password);
           console.log("Email is: " + $scope.data.email);
           console.log("Phone is: " + $scope.data.phone);
 
-            if($scope.data.name == ""){
-              alert("Username is required");
+            if($scope.data.fname == ""){
+              alert("First Name is required");
+              return;
+            }
+
+
+            if($scope.data.lname == ""){
+              alert("Last Name is required");
               return;
             }
 
@@ -87,7 +93,8 @@ $scope.data = {};
                 {
                   params:
                   { 
-                    "name": $scope.data.name ,
+                    "fname": $scope.data.fname ,
+                    "lname": $scope.data.lname ,
                     "password": $scope.data.password ,
                     "email": $scope.data.email ,
                     "phone": $scope.data.phone
@@ -95,11 +102,16 @@ $scope.data = {};
                 })
                   .success(function(response)
                   {
-                    if(response.signup == "Success")
-                      $state.go('login');
-                    else
-                      window.location = '/index';
-                    })
+                    console.log(response);
+                    if(response.code == 200 ){
+                      UserSession.AddUser(response.user_ID);
+                      alert(UserSession.GetUser());
+                      $state.go('');
+                    }
+                    else{
+                      $state.go('signup');                      
+                    }
+                  })
                   .error(function(error)
                   {
                     alert("LOGIN FAILED");
@@ -226,7 +238,7 @@ $scope.data = {};
           alert("Password is required");
             return;
           }
-             $http.get("http://localhost:3000/login", { params: { "username": 'neha@gmail.com' , "password": '12345' } })
+             $http.get("http://localhost:3000/login", { params: { "username": $scope.data.username , "password": $scope.data.password } })
      //   $http.get("http://localhost:3000/login", { params: { "username": $scope.data.username , "password": $scope.data.password } })
          .success(function(response){
           alert(response);

@@ -39,41 +39,33 @@ exports.login = function login(req,res)
 	var uname = req.param("username");
 	var pwd = req.param("password");
 	
-	getSession(function(err,results) {
-		console.log("session - "+ results);
-		if(results.length>0){			
-			console.log("Got the user in session");
-			res.send({"login":"Success"});
-		}else{
-			
-			var getUser="select * from users where emailid='"+req.param("username")+"' and password='" + req.param("password") +"'";
-			console.log("Query is:"+getUser);
-			
-			mysql.fetchData(function(err,results){
-				if(err){
-					throw err;
-				}
-				else 
-				{
-					if(results.length > 0){								
-						console.log("valid Login");
-						addSession(uname, uname, function(err,results) {
-							if(err){
-								console.log("Cannt add to session table");
-							}else{
-								console.log("Added to session table");
-							}
-						});
-						res.send({"login":"Success"});
+	var getUser="select * from users where emailid='"+uname+"' and password='" + pwd +"'";
+	console.log("Query is:"+getUser);
+	
+	mysql.fetchData(function(err,results){
+		if(err){
+			throw err;
+		}
+		else 
+		{
+			if(results.length > 0){								
+				console.log("valid Login");
+				addSession(uname, uname, function(err,results) {
+					if(err){
+						console.log("Cannt add to session table");
+					}else{
+						console.log("Added to session table");
 					}
-					else {    
-						console.log("Invalid Login");
-						res.send({"login":"Fail"});
-					}
-				}  
-			},getUser);
-		}		
-	}, uname);
+				});
+				res.send({"login":"Success"});
+			}
+			else {    
+				console.log("Invalid Login");
+				res.send({"login":"Fail"});
+			}
+		}  
+	},getUser);
+
 };
 
 
@@ -94,6 +86,9 @@ exports.lost = function(req, res){
 		{  
 			//console.log(results);
 		    //console.log(results[0].itemname);
+//			res.json({
+//				items : results
+//			})
 			res.send({"items" : JSON.stringify(results)});
 		}
 	},query1);
@@ -129,7 +124,7 @@ exports.homepage = function(req, res){
 //////////////////////////////////////////////////////////////////////////////////////////////////
 exports.newlostitem = function(req, res){
 	console.log("inside newlostitem");
-	var getUser="insert into lost(uid,itemname,itemdesc,date,time) values (" + req.session.myid + ", '" + req.param("itemname") + "','" + req.param("itemdesc") + "','" + req.param("lostdate") + "','" +  req.param("losttime") + "')"; 
+	var getUser="insert into lost(uid,itemname,itemdesc,date,time) values ('" + req.param("userID")  + "', '" + req.param("itemname") + "','" + req.param("itemdesc") + "','" + req.param("lostdate") + "','" +  req.param("losttime") + "')"; 
 	console.log("Query is:"+getUser);
 	mysql.fetchData(function(err,results){
 		if (results.insertId > 0){
@@ -151,33 +146,31 @@ exports.ondelete = function(req, res){
 
 };
 	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////// SignUp /////////////////////////////////////////////////////////
 
 //Is the name of the function login?
 exports.signup = function login(req,res)
 {	
 	
-	var insertUser = "INSERT INTO users (username,password,emailid,phone) VALUES ('" +req.param("name")+ "','" +req.param("password")+ "','" +req.param("email")+ "','" +req.param("phone")+ "')";
+	var insertUser = "INSERT INTO users (firstname,lastname,password,emailid,mobile) VALUES ('" +req.param("fname")+ "','"+req.param("lname")+"','"+req.param("password")+ "','" +
+						req.param("email")+ "','" +req.param("phone")+ "')";
 	
 	console.log("Query is: "+insertUser);
 	
 	mysql.fetchData(function(err,results){
 		if(err){
-			throw err;
+			console.log("Invalid Login");
+			res.json({
+				code : 400
+			});
 		}
 		else 
 		{
-			if(results.length > 0){
-				//res.session.userid = results[0].uid;
-				console.log("valid Signup");
-				res.send({"signup":"Success"});
-			}
-			else {    
-				
-
-				console.log("Invalid Login");
-				res.send({"login":"Fail"});
-			}
+			console.log("SignUp success");
+			res.json({
+				code : 200,
+				user_ID : req.param("email")
+			});
 		}  
 	},insertUser);
 };
