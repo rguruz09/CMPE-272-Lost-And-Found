@@ -5,7 +5,21 @@ angular.module('starter.controllers', [])
 
 .controller('NewlostItemCtrl', function($scope,$state,$http,$ionicLoading, UserSession) {
 
+  $scope.$on('$ionicView.enter', function() {
+     // Code you want executed every time view is opened
+     console.log('Opened!')
+
+   
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -33.8688, lng: 151.2195},
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+           });
+
+  })
+
   $scope.data = {};
+ 
   $scope.submit = function() {
 
   //$http.get("http://localhost:3000/NewlostItem", { params: { "itemname": $scope.data.itemName , "itemdesc": $scope.data.itemDescr , "lostdate":$scope.data.itemDate ,"losttime":$scope.data.itemTime  } })

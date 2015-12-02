@@ -33,6 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
 
   // setup an abstract state for the tabs directive
     .state('tab', {
+    cache: false,
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -43,6 +44,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
   .state('tab.dash', {
     url: '/dash',
     views: {
+      cache: false,
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
         controller: 'DashCtrl'
@@ -51,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
   })
 
   .state('tab.chats', {
+      cache: false,
       url: '/chats',
       views: {
         'tab-chats': {
@@ -90,6 +93,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
   })
 
        .state('NewlostItem', {
+      cache: false,
       url: '/NewlostItem',
       templateUrl: 'templates/NewlostItem.html',
       controller: 'NewlostItemCtrl'

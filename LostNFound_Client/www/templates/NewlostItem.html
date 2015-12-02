@@ -1,9 +1,10 @@
+<ion-nav-view ng-controller="NewlostItemCtrl" name="other" ng-init="initLoad()"></ion-nav-view>
 <ion-view view-title="Add Lost Item" name="signup-view">
 <ion-nav-bar class=" bar bar-positive">
 <ion-nav-back-button></ion-nav-back-button>
  </ion-nav-bar>
 <ion-content class="padding">
-<div class="row">
+<div class="row" ng-init = "initload()">
   <div class="col col-center">Item Lost</div>
   <div class="col col-67">
     <label class="item item-input">
@@ -57,6 +58,7 @@
         </select>
   </div>
 </div>  
+<div id="map"></div>
 
  <a class="button button-calm button-block icon icon-center ion-unlocked" ng-click="submit()"></i> Submit</a>
   </ion-content>
