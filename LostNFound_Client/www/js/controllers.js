@@ -2,6 +2,54 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
+.controller('frontpageCtrl', function($scope) {
+$scope.allimages = [
+         '../img/home1.jpeg','../img/home2.jpeg','../img/home3.jpeg'
+    ];
+})
+
+
+.controller('overlayController',function($scope, $timeout){
+ 
+        var startimg="img/image.jpg";
+        $scope.image=startimg;
+        $scope.textOverlay="";
+ 
+        var canvas = document.getElementById('tempCanvas');
+        var context = canvas.getContext('2d');
+ 
+        $scope.createOverlay= function(){
+ 
+          var source =  new Image();
+          source.src = startimg;
+          canvas.width = source.width;
+          canvas.height = source.height;
+ 
+          console.log(canvas);
+ 
+          context.drawImage(source,0,0);
+ 
+          context.font = "100px impact";
+          textWidth = context.measureText($scope.frase).width;
+ 
+          if (textWidth > canvas.offsetWidth) {
+              context.font = "20px impact";
+          }
+          context.textAlign = 'center';
+          context.fillStyle = 'black';
+ 
+          context.fillText($scope.textOverlay,canvas.width/2,canvas.height*0.8);
+ 
+            var imgURI = canvas.toDataURL();
+ 
+          $timeout( function(){
+              $scope.image = imgURI;
+          }, 200);
+        }
+ 
+})
+
+
 
 .controller('NewlostItemCtrl', function($scope,$state,$http,$ionicLoading, UserSession) {
 

@@ -1,0 +1,19 @@
+
+<ion-view view-title="Lost 'N' Found" class= "custom-clas1">
+<ion-nav-bar class=" bar bar-positive">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+
+<ion-slide-box slide-interval="30000" class = "custom-class">
+  <ion-slide ng-repeat="img1 in allimages">
+     <img class="custom-class" ng-src="{{img1}}"/>
+
+     <a href="#/login">Want to Explore more? Please login</a>
+  </ion-slide>
+
+</ion-slide-box>
+
+</ion-view>
+
+
+

@@ -2,7 +2,7 @@
   position: fixed;
   z-index: -1;
   top:0; right:0; bottom:0; left:0;
-  background: url(http://maxoffsky.com/word/wp-content/uploads/2014/04/canvas-fss.png) center;
+  background:url(https://t2.ftcdn.net/jpg/00/57/88/83/240_F_57888342_m3onDSn1Cqcrj73vWrnbU5vMyUMX515i.jpg) center;
   background-size: cover;
 }
 
@@ -11,6 +11,34 @@
 
 
 }
+.lostitemimage {
+  position: fixed;
+  z-index: -1;
+  top:0; right:0; bottom:0; left:0;
+  background:url(https://t2.ftcdn.net/jpg/00/57/88/83/240_F_57888342_m3onDSn1Cqcrj73vWrnbU5vMyUMX515i.jpg) center;
+  background-size: cover;
+}
+
+.slider{
+height : 100%;
+text-align : center;
+}
+
+.scroll{
+  height : 100%;
+}
+
+.custom-class{
+   position: fixed;
+  z-index: -1;
+  top:0; right:0; bottom:0; left:0;
+  border-image-height: 100%; 
+  padding-right: 10px;
+  padding-left: px;
+  padding-top : 50px;
+  
+}
+
 .item{
 	line-height: 20px;
 	text-align:left;
@@ -21,12 +49,11 @@
   border-bottom:none;
   margin-bottom: -10px;
 }
-i.
+
 .img{
  max-width: 100%;
+ max-height : 100%;
  display:block;
- margin-left:auto;
- margin-right:auto;
 }
 
 .bet{

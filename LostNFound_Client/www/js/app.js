@@ -23,6 +23,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
   });
 })
 
+
 .config(function($stateProvider, $urlRouterProvider ) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -78,6 +79,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
       controller: 'HomepageCtrl'
      
   }) 
+    .state('frontpage', {
+      url: '/frontpage',
+      templateUrl: 'templates/frontpage.html',
+      controller: 'frontpageCtrl'
+  })
 
 
      .state('login', {
@@ -112,6 +118,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
       controller: 'addCtrl',
       cache: false
   })  
+    .state('dummy', {
+     url: '/dummy',
+    templateUrl: 'templates/dummy.html',
+    //controller: 'SignUpCtrl'
+  })
+    .state('dummy1', {
+     url: '/dummy1',
+    templateUrl: 'templates/dummy1.html',
+    //controller: 'SignUpCtrl'
+  })
 
    .state('signup', {
      url: '/signup',
@@ -128,7 +144,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' ])
       }
     }
   });
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/frontpage');
 
   // if none of the above states are matched, use this as the fallback
   /*if (starter.services.UserSession.getUser== null) {
