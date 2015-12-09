@@ -10,7 +10,7 @@ function getConnection(){
 		
 		host : 'localhost',
 		user : 'root',
-		password : 'raghu',
+		password : 'Raghu',
 		database : 'LOSTNFOUND' 
 	});
 	return connection ;

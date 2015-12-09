@@ -45,16 +45,20 @@ app.all('*', function(req, res, next) {
 
 app.get('/', routes.index);
 app.post('/lost', user.lost);
-app.get('/login', user.login);
+app.post('/login', user.login);
 app.get('/users', user.list);
 app.get('/ondelete', user.ondelete);
-app.get('/showdetails', user.showdetails);
+app.post('/showdetails', user.showdetails);
+app.post('/showfounddetails', user.showfounddetails);
 app.get('/homepage', user.homepage);
-app.get('/NewlostItem',user.newlostitem);
-app.get('/getLocation', user.getLocation);
-app.get('/signup',user.signup);
+app.post('/NewlostItem',user.newlostitem);
+app.post('/signup',user.signup);
+app.post('/deleteLost',user.deleteLost);
+app.post('/deleteFound',user.deleteFound);
 app.post('/getFoundItems', user.getFoundItems);
 app.post('/addNewFoundItem', user.addNewFoundItem);
+app.get('/registerDevice', user.registerDevice);
+//app.get('/push', user.push);
 
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -1,0 +1,42 @@
+
+<ion-view view-title="Sign Up" name="signup-view">
+<ion-nav-bar class=" bar bar-positive">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content class="padding">
+
+      <div class="list list-inset">
+          <label class="item item-input">
+              <input type="text" placeholder="First Name" ng-model="data.fname">
+          </label>
+      </div>
+      <br>
+      <div class="list list-inset">
+          <label class="item item-input">
+              <input type="text" placeholder="Last Name" ng-model="data.lname">
+          </label>
+      </div>
+      <br>
+       <div class="list list-inset">
+      <label class="item item-input">
+        <input type="email" placeholder="Email id" ng-model="data.email">
+          </label>
+      </div>
+      <br>
+      <div class="list list-inset">  
+          <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="data.password">
+          </label>
+      </div>  
+      <br>  
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="Phone number" ng-model="data.phone">
+          </label>
+      </div>
+      <br>
+        
+      <button class="button button-block button-calm" ng-click="signup()">Sign Up</button>
+      
+  </ion-content>
+</ion-view>

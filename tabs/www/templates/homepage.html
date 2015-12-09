@@ -1,0 +1,30 @@
+<ion-view view-title="Home" name="homepage-view">
+<ion-nav-bar class=" bar bar-positive">
+ <ion-nav-back-button></ion-nav-back-button>
+ </ion-nav-bar>
+<ion-content class="padding">
+<div class="list">
+ <div> Welcome <b>{{getdetails[0].fullname}}</b></div>
+ <br>
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper" style="float:left;">
+      <input type="text" placeholder="Email" ng-model="data.email">{{getdetails[0].emailid}}
+    </label>
+    <button class="button button-small icon ion-edit">
+    </button>
+  </div>
+</div>
+<br><br>
+
+<div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="Phone" ng-model ="data.phone" >{{getdetails[0].mobile}}
+    </label>
+    <button class="button button-small icon ion-edit" >
+    </button>
+  </div>
+</div>
+<br>
+ <a class="button button-calm button-block icon icon-center ion-unlocked" ng-click="update()"></i> Update</a>
+  </ion-content>
+</ion-view>

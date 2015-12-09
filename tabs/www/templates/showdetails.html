@@ -1,0 +1,33 @@
+<ion-view view-title="Lost 'N' Found">
+<ion-nav-bar class="bar bar-positive" >
+<ion-nav-back-button></ion-nav-back-button>
+</ion-nav-bar>
+ <ion-header-bar no-tap-scroll="true" class="bar bar-subheader align-center bar-calm ">
+ <h4 align="center" style="color:white">DETAILS</h4></ion-header-bar>
+<ion-content class="has-header" >
+ <div class="list" >
+<div class="item item-body">
+	<div class="row responsive-sm ">
+		<div class=".col item item-divider">
+User : {{results[0].firstname + " " + results[0].lastname}}</div><br>
+<div class=".col item item-divider">
+Date :	{{results[0].date}}</div><br>
+<div class=".col item item-divider">
+Item :	{{results[0].itemname}}</div><br>
+<span class=".col item item-text-wrap item-divider" style="height:auto">	
+
+Description : {{results[0].itemdesc}}<br>
+</span>
+
+
+
+
+<div class="button button-block item item-divider" style="text-align:center;padding-top:4%;">CONTACT DETAILS</div> 
+	<div class="icon ion-email item" style="height:auto"> Email : {{results[0].emailid}}</div>
+	<div class="icon ion-ios-telephone-outline item">  Phone : {{results[0].mobile}}</div>
+	
+</div>
+
+</ion-content-class>
+
+</ion-view>

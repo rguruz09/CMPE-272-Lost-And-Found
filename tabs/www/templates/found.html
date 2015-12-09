@@ -1,0 +1,50 @@
+<ion-view  view-title="Lost 'N' Found" name="login-view" hide-back-button="{{hideBackButton}}" >
+ <ion-footer-bar class="bar-calm">
+  <button class="f button button-clear button-block icon ion-android-add-circle padding" ng-click="addItem()"></button>
+</ion-footer-bar>
+ 
+ 
+<ion-nav-bar class="bar bar-positive">
+</ion-nav-bar>
+<ion-nav-buttons side="left">
+      <button class="icon ion-home button button-clear" ng-click="gohome()">
+       
+      </button>
+    </ion-nav-buttons>
+<ion-nav-buttons side="secondary">
+      <button class="icon ion-power button button-clear" ng-click="logout()">
+       
+      </button>
+    </ion-nav-buttons>
+  <ion-header-bar no-tap-scroll="true" class="bar bar-subheader bar-calm ">
+    <div class="button-bar">
+      <a class="button button-icon icon ion-ios-search" ng-click="lost()">Lost</a>
+  
+
+       <a class="button button-icon icon ion-android-arrow-dropdown-circle" ng-click="found()">Found</a>
+    </div>
+	<a class="abc" no-tap-scroll="true">
+    <form method="get" action="/search" id="searchbox5">
+        <input id="search51" name="q" type="text" size="40" ng-model="search" placeholder="Search..." />
+    </form>
+</a>
+      </ion-header-bar>
+  
+
+  <ion-content  overflow-scroll="false" class="has-footer has-subheader padding" has-bouncing="true">
+<br>
+    <div class="list card button-block" on-swipe-down="onSwipeDown()" ng-repeat = "item in items | filter : search" > 
+
+      <div class="item item-divider "  ng-click="showfounddetails(item.id)" ><b>{{item.firstname}}</b> has found <b>{{item.itemname}}</b></div>
+      <div class="item item-body">
+          <b>Description: </b>{{item.itemdesc}} itemid : {{item.id}}<br>
+            <b>On</b> {{item.date}}at <b>{{item.time}}</b>
+            <div  ng-click="deletefound(item.id, item.emailid)"><i class="bet icon icon-medium ion-trash-a"></i> </div>
+      </div>
+
+    </div>
+
+<div class="fullscreen-bg"></div>
+ 
+</ion-content-class>
+<ion-view>
